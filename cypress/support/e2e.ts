@@ -21,4 +21,5 @@ Cypress.Commands.add('addTodo', (text: string) => {
   cy.get('.new-todo').type(text + '{enter}')
   // check when the new todo appears in the list
   cy.contains('.todo-list li', text)
+  cy.wrap(text)
 })

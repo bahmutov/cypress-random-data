@@ -1,4 +1,9 @@
-import { allItems, TODO_ITEM_ONE, TODO_ITEM_TWO } from './utils'
+import { allItems } from './utils'
+
+// @ts-ignore
+const Chance = require('chance')
+
+const chance = new Chance()
 
 describe('TodoMVC', function () {
   beforeEach(function () {
@@ -6,17 +11,15 @@ describe('TodoMVC', function () {
   })
 
   context('New Todo', function () {
-    // These tests confirm that add new Todo items works.
-    // All tests go through the DOM and events just like a real user would.
-
-    // Input element selector for typing new todo title
-    const NEW_TODO = '.new-todo'
-
     it('should allow me to add todo items', function () {
-      cy.get(NEW_TODO).type(TODO_ITEM_ONE).type('{enter}')
-      allItems().eq(0).find('label').should('contain', TODO_ITEM_ONE)
-      cy.get(NEW_TODO).type(TODO_ITEM_TWO).type('{enter}')
-      allItems().eq(1).find('label').should('contain', TODO_ITEM_TWO)
+      const text1 = chance.sentence({ words: 3 })
+
+      cy.addTodo(text1)
+      allItems().eq(0).find('label').should('contain', text1)
+
+      const text2 = chance.sentence({ words: 3 })
+      cy.addTodo(text2)
+      allItems().eq(1).find('label').should('contain', text2)
     })
   })
 })
