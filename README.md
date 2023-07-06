@@ -2,6 +2,9 @@
 
 > Example of creating chance data for Cypress E2E tests
 
+Uses [Chance](https://chancejs.com/index.html) to generate random data in Cypress spec.
+
+📺 Watch the video [Cypress Random Data And Custom Commands Example](https://youtu.be/T2Ez3jt6Kpc)
 
 ## Small print
 
